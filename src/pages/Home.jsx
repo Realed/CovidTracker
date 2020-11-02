@@ -25,7 +25,9 @@ const MenuWrapper = styled.div`
 
 const Menu = styled.div`
   height: 100px;
-  width: 900px;
+  width: 78%;
+  max-width: 1000px;
+  min-width: 715px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -74,7 +76,9 @@ const GlobalDeathWrapper = styled.div`
 `
 
 const GlobalDeathBox = styled.div`
-  width: 800px;
+  width: 55%;
+  max-width: 850px;
+  min-width: 575px;
   background-color: #fff;
   border: 1px solid #eeee;
   height: 200px;
@@ -131,6 +135,14 @@ const GlobalDeathBox = styled.div`
           font-size: 11px;
           font-family: "Roboto", sans-serif;
           font-weight: 400;
+        }
+        @media (max-width: 1175px) {
+          h1 {
+            font-size: 1.6em;
+          }
+          p {
+            font-size: 9.5px;
+          }
         }
       }
 
@@ -290,6 +302,18 @@ const SpainDeathBox = styled(GlobalDeathBox)`
         .recoveredcases-box {
           width: 48.5%;
           height: 90%;
+
+          .numbers-box {
+            @media (max-width: 1175px) {
+              h1 {
+                font-size: 1em;
+              }
+              p {
+                font-size: 9px;
+                text-align: center;
+              }
+            }
+          }
 
           .footer {
             h1 {
