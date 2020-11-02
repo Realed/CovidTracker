@@ -33,7 +33,7 @@ const Chart = () => {
     const res = await fetch(
       `https://api.covid19tracking.narrativa.com/api/country/spain?date_from=${dateYear}-${
         dateMonth - 1
-      }-01&date_to=${dateYear}-${dateMonth}-0${dateDay}`
+      }-${dateDay}&date_to=${dateYear}-${dateMonth}-0${dateDay}`
     )
     const data = await res.json()
     console.log(data.dates)
