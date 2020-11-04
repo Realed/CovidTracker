@@ -5,6 +5,21 @@ import { Line } from "react-chartjs-2"
 const ChartWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    max-width: 75px;
+    max-height: 75px;
+  }
+
+  h1 {
+    color: #444;
+    font-weight: 500;
+    font-size: 1em;
+  }
 
   div {
     display: flex;
@@ -24,6 +39,7 @@ const ChartWrapper = styled.div`
 
 const Chart = () => {
   const [chartData, setChartData] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
 
   let dateYear = new Date().getFullYear()
   let dateMonth = new Date().getMonth() + 1
@@ -36,8 +52,6 @@ const Chart = () => {
       }-${dateDay}&date_to=${dateYear}-${dateMonth}-0${dateDay}`
     )
     const data = await res.json()
-    console.log(data.dates)
-
     buildChart(data.dates)
   }
 
@@ -51,6 +65,7 @@ const Chart = () => {
       horizontalMonthlyData.push(
         dataDates[dataDay].countries.Spain.today_confirmed
       )
+      setIsLoading(false)
     }
 
     setChartData({
@@ -77,7 +92,14 @@ const Chart = () => {
   return (
     <>
       <ChartWrapper>
-        <Line data={chartData} options={{ responsive: true }} />
+        {isLoading && (
+          <img
+            src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+            alt="loading-gif"
+          />
+        )}
+        {isLoading && <h1>Loading...</h1>}
+        {!isLoading && <Line data={chartData} options={{ responsive: true }} />}
       </ChartWrapper>
     </>
   )
