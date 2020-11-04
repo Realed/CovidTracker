@@ -381,8 +381,8 @@ const HomePage = () => {
 
   //NUMBER FORMATER
   var formatNumber = {
-    separador: ".", // separador para los miles
-    sepDecimal: ",", // separador para los decimales
+    separador: ",", // separador para los miles
+    sepDecimal: ".", // separador para los decimales
     formatear: function (num) {
       num += ""
       var splitStr = num.split(".")
