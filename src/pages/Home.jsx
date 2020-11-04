@@ -411,7 +411,6 @@ const HomePage = () => {
 
     setGlobalData(data.total)
     setGlobalLoading(false)
-    console.log(data.total)
   }
 
   const getSpainData = async () => {
@@ -422,10 +421,6 @@ const HomePage = () => {
 
     setSpainData(
       data.dates[`${dateYear}-${dateMonth}-0${dateDay}`].countries.Spain
-    )
-    console.log(
-      data.dates[`${dateYear}-${dateMonth}-0${dateDay}`].countries.Spain,
-      "Data Spaña"
     )
     setSpainLoading(false)
   }
