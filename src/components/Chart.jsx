@@ -41,15 +41,36 @@ const Chart = () => {
   const [chartData, setChartData] = useState({})
   const [isLoading, setIsLoading] = useState(true)
 
-  let dateYear = new Date().getFullYear()
-  let dateMonth = new Date().getMonth() + 1
-  let dateDay = new Date().getDate()
+  let dateYear = new Date().getFullYear().toString()
+  let dateMonth = (new Date().getMonth() + 1).toString()
+  let dateDay = new Date().getDate().toString()
 
-  const getMonthlyData = async () => {
+  const getDatesAndRender = () => {
+    let month = new Date().getMonth()
+    let year = new Date().getFullYear()
+    let day = dateDay
+
+    if (dateMonth.length === 1) {
+      dateMonth = "0" + dateMonth
+    }
+    if (dateDay.length === 1) {
+      dateDay = "0" + dateDay
+    }
+
+    if (month === 0) {
+      month = 12
+      year = year - 1
+    }
+
+    const fullDate = `${dateYear}-${dateMonth}-${dateDay}`
+    const previousFullDate = `${year}-${month}-${day}`
+
+    getMonthlyData(fullDate, previousFullDate)
+  }
+
+  const getMonthlyData = async (fullDate, previousFullDate) => {
     const res = await fetch(
-      `https://api.covid19tracking.narrativa.com/api/country/spain?date_from=${dateYear}-${
-        dateMonth - 1
-      }-${dateDay}&date_to=${dateYear}-${dateMonth}-0${dateDay}`
+      `https://api.covid19tracking.narrativa.com/api/country/spain?date_from=${previousFullDate}&date_to=${fullDate}`
     )
     const data = await res.json()
     buildChart(data.dates)
@@ -86,7 +107,7 @@ const Chart = () => {
   }
 
   useEffect(() => {
-    getMonthlyData()
+    getDatesAndRender()
   }, [])
 
   return (

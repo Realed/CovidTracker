@@ -289,7 +289,7 @@ const SpainDeathBox = styled(GlobalDeathBox)`
       padding: 5px 10px;
       box-sizing: border-box;
 
-      border-right: 1px solid #dbdbdb;
+      border-right: 1px solid #e4e4e4;
 
       .confirmed_recovered-box {
         display: flex;
@@ -375,12 +375,12 @@ const HomePage = () => {
 
   //REFS
   const inputDate = useRef()
-  let dateYear = new Date().getFullYear()
-  let dateMonth = new Date().getMonth() + 1
-  let dateDay = new Date().getDate()
+  let dateYear = new Date().getFullYear().toString()
+  let dateMonth = (new Date().getMonth() + 1).toString()
+  let dateDay = new Date().getDate().toString()
 
   //NUMBER FORMATER
-  var formatNumber = {
+  const formatNumber = {
     separador: ",", // separador para los miles
     sepDecimal: ".", // separador para los decimales
     formatear: function (num) {
@@ -400,9 +400,39 @@ const HomePage = () => {
     },
   }
 
-  const getGlobalData = async () => {
+  //MAIN RENDER FUNCTION
+  const getDatesAndRender = () => {
+    //DATES VALIDATION
+    if (dateMonth < 10) {
+      dateMonth = 0 + dateMonth
+    }
+
+    let month = new Date().getMonth()
+    let year = new Date().getFullYear()
+    let day = dateDay
+
+    if (dateMonth.length === 1) {
+      dateMonth = "0" + dateMonth
+    }
+    if (dateDay.length === 1) {
+      dateDay = "0" + dateDay
+    }
+
+    if (month === 0) {
+      month = 12
+      year = year - 1
+    }
+
+    const fullDate = `${dateYear}-${dateMonth}-${dateDay}`
+    const previousFullDate = `${year}-${month}-${day}`
+
+    getGlobalData(fullDate)
+    getSpainData(fullDate)
+  }
+
+  const getGlobalData = async (fullDate) => {
     const res = await fetch(
-      `https://api.covid19tracking.narrativa.com/api/${dateYear}-${dateMonth}-${dateDay}`
+      `https://api.covid19tracking.narrativa.com/api/${fullDate}`
     )
     const data = await res.json()
     // data.total.today_confirmed = formatNumber.new(data.total.today_confirmed)
@@ -413,16 +443,18 @@ const HomePage = () => {
     setGlobalLoading(false)
   }
 
-  const getSpainData = async () => {
+  const getSpainData = async (fullDate) => {
     const res = await fetch(
-      `https://api.covid19tracking.narrativa.com/api/${dateYear}-${dateMonth}-${dateDay}/country/spain`
+      `https://api.covid19tracking.narrativa.com/api/${fullDate}/country/spain`
     )
     const data = await res.json()
+    // console.log(
+    //   data.dates[`${dateYear}-0${dateMonth}-${dateDay}`].countries.Spain
+    // )
 
-    setSpainData(
-      data.dates[`${dateYear}-${dateMonth}-0${dateDay}`].countries.Spain
-    )
+    setSpainData(data.dates[`${fullDate}`].countries.Spain)
     setSpainLoading(false)
+    console.log(spainData)
   }
 
   const handleChangeDate = async () => {
@@ -436,8 +468,7 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    getGlobalData()
-    getSpainData()
+    getDatesAndRender()
   }, [])
 
   return (
@@ -548,7 +579,7 @@ const HomePage = () => {
                   // defaultValue={`2020-11-01`}
                   onChange={handleChangeDate}
                   min="2020-02-01"
-                  max={`${dateYear}-${dateMonth}-0${dateDay}`}
+                  max={`${dateYear}-${dateMonth}-${dateDay}`}
                 />
               </div>
               <div className="date-box">
