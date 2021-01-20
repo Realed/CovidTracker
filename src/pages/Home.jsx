@@ -806,7 +806,7 @@ const HomePage = () => {
                   onChange={handleChangeDate}
                   min="2020-02-01"
                   max={actualMonth}
-                  value={actualMonth}
+                  defaultValue={actualMonth}
                 />
               </div>
               <div className="date-box">
