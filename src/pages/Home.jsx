@@ -5,7 +5,8 @@ import styled from "styled-components"
 import NavMenu from "../components/NavMenu"
 import GlobalStyles from "../components/GlobalStyles"
 import Logo from "../components/logo"
-import Chart from "../components/Chart"
+import Chart from "../components/SpainChart"
+import ComparativeChart from "../components/ComparativeChart"
 
 //STYLES
 
@@ -136,6 +137,16 @@ const GlobalDeathBox = styled.div`
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
+  }
+
+  &.comparative-chart {
+    max-height: 350px;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 1000px) {
+      height: fit-content;
+    }
   }
 
   .main-box {
@@ -935,6 +946,11 @@ const HomePage = () => {
             </div>
           </div>
         </SpainDeathBox>
+        <GlobalDeathWrapper>
+          <GlobalDeathBox mgtop="105px" className="comparative-chart">
+            <ComparativeChart />
+          </GlobalDeathBox>
+        </GlobalDeathWrapper>
       </MainWrapper>
     </>
   )
