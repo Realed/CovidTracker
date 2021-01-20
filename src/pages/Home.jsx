@@ -450,6 +450,8 @@ const HomePage = () => {
   const [globalLoading, setGlobalLoading] = useState(true)
   const [spainData, setSpainData] = useState({})
   const [spainLoading, setSpainLoading] = useState(true)
+  const [previousMonth, setPreviousMonth] = useState("")
+  const [actualMonth, setActualMonth] = useState("")
 
   //REFS
   const inputDate = useRef()
@@ -503,6 +505,8 @@ const HomePage = () => {
 
     const fullDate = `${dateYear}-${dateMonth}-${dateDay}`
     const previousFullDate = `${year}-${month}-${day}`
+    setPreviousMonth(previousFullDate)
+    setActualMonth(fullDate)
 
     getGlobalData(fullDate)
     getSpainData(fullDate)
@@ -672,9 +676,7 @@ const HomePage = () => {
               <p>Spain - Total Cases</p>
             </div>
             <div className="date-box">
-              <p>{`${dateDay}/${
-                dateMonth - 1
-              }/${dateYear} - ${dateDay}/${dateMonth}/${dateYear}`}</p>
+              <p>{`${previousMonth} / ${actualMonth}`}</p>
             </div>
             <div className="updated-box">
               <p>Updated 2h 47mins ago</p>
