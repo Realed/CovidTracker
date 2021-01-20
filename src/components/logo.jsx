@@ -4,13 +4,13 @@ import styled from "styled-components"
 const Title = styled.h1`
   font-family: "Roboto", sans-serif;
   font-weight: 900;
-  color: white;
+  color: black;
   font-size: 2em;
   margin: 0;
 
   span {
     font-weight: 600;
-    color: #fff;
+    color: #333;
   }
 `
 

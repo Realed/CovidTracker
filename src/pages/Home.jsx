@@ -10,9 +10,8 @@ import Chart from "../components/Chart"
 //STYLES
 
 const MenuWrapper = styled.div`
-  height: 200px;
+  height: 240px;
   width: 100%;
-  background-color: #1471db;
   display: flex;
   align-items: flex-start;
   /* background-image: url("https://www.ebsco.com/e/files/assets-blogs/coka-project-covid19-blog-image-940.png"); */
@@ -24,16 +23,22 @@ const MenuWrapper = styled.div`
 `
 
 const Menu = styled.div`
-  height: 100px;
-  width: 78%;
-  max-width: 1000px;
+  height: fit-content;
+  width: 100%;
   min-width: 715px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 5px 10%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px solid #eeee;
+  align-items: center;
+  background-color: #fafafa;
+  color: black;
+
+  @media screen and (max-width: 1400px) {
+    padding: 5px 7%;
+  }
+  @media screen and (max-width: 900px) {
+    padding: 5px 2%;
+  }
 
   .logo-box {
     width: fit-content;
@@ -43,21 +48,19 @@ const Menu = styled.div`
   .menu-box {
     min-width: 53%;
     height: fit-content;
-    margin-bottom: 5px;
   }
 
   .profile-box {
     width: fit-content;
     max-width: 5%;
     height: fit-content;
-    margin-bottom: 5px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
 
     img {
-      max-width: 80%;
-      max-height: 25%;
+      max-width: 31px;
+      max-height: 31px;
       cursor: pointer;
     }
   }
@@ -72,16 +75,17 @@ const GlobalDeathWrapper = styled.div`
   width: 100%;
   height: 250px;
   position: relative;
-  top: -50px;
+  top: -75px;
 `
 
 const GlobalDeathBox = styled.div`
   width: 55%;
   max-width: 850px;
-  min-width: 575px;
+  min-width: 275px;
   background-color: #fff;
   border: 1px solid #eeee;
-  height: 200px;
+  min-height: 200px;
+  max-height: 600px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 6px;
@@ -89,9 +93,26 @@ const GlobalDeathBox = styled.div`
   -moz-box-shadow: 2px 3px 5px 0px rgba(129, 127, 129, 0.52);
   box-shadow: 2px 3px 5px 0px rgba(134, 134, 134, 0.52);
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: column; */
   margin-top: ${({ mgtop }) => mgtop};
+
+  @media screen and (max-width: 1100px) {
+    width: 65%;
+  }
+  @media screen and (max-width: 900px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 700px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 625px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 525px) {
+    width: 65%;
+  }
 
   h1,
   p {
@@ -102,17 +123,42 @@ const GlobalDeathBox = styled.div`
 
   .main-box {
     height: 85%;
+    min-height: 165px;
     padding: 5px 15px;
 
-    display: flex;
+    @media screen and (max-width: 525px) {
+      padding: 15px;
+    }
+
+    &.spain-box {
+      box-sizing: border-box;
+      padding: 0 5px;
+      grid-template-columns: 35% 65%;
+      grid-template-rows: 100%;
+
+      justify-content: center;
+      align-items: center;
+      /* width: fit-content; */
+    }
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+    row-gap: 10px;
+
+    @media screen and (max-width: 525px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
+    }
     justify-content: space-between;
     align-items: center;
+    column-gap: 10px;
 
     .confirmedcases-box,
     .deathcases-box,
     .recoveredcases-box {
-      width: 33%;
-      height: 80%;
+      width: 100%;
+      height: 92%;
+      min-height: 95px;
       border-radius: 7px;
 
       .numbers-box {
@@ -165,8 +211,6 @@ const GlobalDeathBox = styled.div`
     }
 
     .confirmedcases-box {
-      /* height: 85%; */
-      width: 30%;
       background-color: rgb(192, 183, 183, 0.7);
       color: rgb(110, 110, 110);
 
@@ -202,8 +246,16 @@ const GlobalDeathBox = styled.div`
   .footer-box {
     border-top: 1px solid #dbdbdb;
     height: 18%;
-    display: flex;
-    justify-content: space-between;
+    height: 35px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media screen and (max-width: 525px) {
+      height: 70px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     padding: 0px 15px;
 
     .title-box,
@@ -213,7 +265,29 @@ const GlobalDeathBox = styled.div`
       align-items: center;
     }
 
+    .title-box {
+      @media screen and (max-width: 525px) {
+        grid-column: 1/2;
+        grid-row: 1/2;
+      }
+    }
+
+    .date-box {
+      justify-content: flex-end;
+      @media screen and (max-width: 525px) {
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
+    }
+
     .day-box {
+      @media screen and (max-width: 525px) {
+        grid-column: 1/3;
+        grid-row: 2/3;
+        border: none;
+      }
+
+      justify-content: center;
       height: 100%;
       border-right: 1px solid #eeee;
       border-left: 1px solid #eeee;
@@ -223,7 +297,7 @@ const GlobalDeathBox = styled.div`
         border: none;
         font-weight: 300;
         font-family: "Roboto", sans-serif;
-        width: 123px;
+        width: 100%;
         cursor: pointer;
 
         &:focus {
@@ -284,10 +358,13 @@ const SpainDeathBox = styled(GlobalDeathBox)`
     padding: 0;
 
     .data-box {
-      width: 38%;
+      width: 100%;
       height: 100%;
       padding: 5px 10px;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       border-right: 1px solid #e4e4e4;
 
@@ -295,6 +372,7 @@ const SpainDeathBox = styled(GlobalDeathBox)`
         display: flex;
         width: 100%;
         height: 50%;
+        padding-bottom: 3px;
         justify-content: space-between;
         align-items: center;
 
@@ -357,7 +435,7 @@ const SpainDeathBox = styled(GlobalDeathBox)`
       }
     }
     .graph-box {
-      width: 64%;
+      width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -588,7 +666,7 @@ const HomePage = () => {
             </div>
           </GlobalDeathBox>
         </GlobalDeathWrapper>
-        <SpainDeathBox mgtop="-65px">
+        <SpainDeathBox mgtop="-90px">
           <div className="title-box">
             <div className="country-box">
               <p>Spain - Total Cases</p>
@@ -602,7 +680,7 @@ const HomePage = () => {
               <p>Updated 2h 47mins ago</p>
             </div>
           </div>
-          <div className="main-box">
+          <div className="main-box spain-box">
             <div className="data-box">
               <div className="confirmed_recovered-box">
                 <div className="confirmedcases-box">

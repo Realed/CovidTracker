@@ -20,16 +20,17 @@ const Menu = styled.ul`
 `
 
 const StyledLink = styled(NavLink)`
-  color: black;
   text-decoration: none;
-  font-family: "Oswald", sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.15ch;
-  color: white;
+  /* font-family: "Oswald", sans-serif; */
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  /* letter-spacing: 0.15ch; */
+  color: black;
   text-transform: uppercase;
 
   &:hover {
-    color: #eeee;
+    color: #5c5c5c;
+    text-decoration: underline #5c5c5c;
   }
 `
 
