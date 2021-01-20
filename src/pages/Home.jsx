@@ -133,6 +133,7 @@ const GlobalDeathBox = styled.div`
     column-gap: 10px;
 
     @media screen and (max-width: 525px) {
+      padding: 15px;
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, 1fr);
     }
@@ -152,6 +153,10 @@ const GlobalDeathBox = styled.div`
       width: 100%;
       height: 92%;
       border-radius: 7px;
+
+      &.minheight {
+        min-height: 105px;
+      }
 
       .numbers-box {
         height: 69%;
@@ -237,18 +242,26 @@ const GlobalDeathBox = styled.div`
 
   .footer-box {
     border-top: 1px solid #dbdbdb;
-    height: 18%;
     height: 35px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    padding: 0px 15px;
 
     @media screen and (max-width: 525px) {
       height: 70px;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-columns: repeat(2, 1fr);
-    }
+      padding: 0;
 
-    padding: 0px 15px;
+      .title-box {
+        padding-left: 15px;
+      }
+      .day-box {
+        padding: 0 15px;
+      }
+      .date-box {
+        padding-right: 15px;
+      }
+    }
 
     .title-box,
     .date-box,
@@ -261,6 +274,7 @@ const GlobalDeathBox = styled.div`
       @media screen and (max-width: 525px) {
         grid-column: 1/2;
         grid-row: 1/2;
+        border-right: 1px solid #eeee;
       }
     }
 
@@ -273,17 +287,19 @@ const GlobalDeathBox = styled.div`
     }
 
     .day-box {
-      @media screen and (max-width: 525px) {
-        grid-column: 1/3;
-        grid-row: 2/3;
-        border: none;
-      }
-
       justify-content: center;
       height: 100%;
       border-right: 1px solid #eeee;
       border-left: 1px solid #eeee;
       padding: 0 5px;
+
+      @media screen and (max-width: 525px) {
+        padding: 0 15px;
+        grid-column: 1/3;
+        grid-row: 2/3;
+        border: none;
+        border-top: 1px solid #eeee;
+      }
 
       input {
         border: none;
@@ -600,7 +616,7 @@ const HomePage = () => {
         <GlobalDeathWrapper>
           <GlobalDeathBox>
             <div className="main-box">
-              <div className="confirmedcases-box">
+              <div className="confirmedcases-box minheight">
                 <div className="numbers-box">
                   {globalLoading && <h1>Loading..</h1>}
                   {!globalLoading && (
@@ -624,7 +640,7 @@ const HomePage = () => {
                   <h1>Confirmed</h1>
                 </div>
               </div>
-              <div className="recoveredcases-box">
+              <div className="recoveredcases-box minheight">
                 <div className="numbers-box">
                   {globalLoading && <h1>Loading..</h1>}
                   {!globalLoading && (
@@ -648,7 +664,7 @@ const HomePage = () => {
                   <h1>Recovered</h1>
                 </div>
               </div>
-              <div className="deathcases-box">
+              <div className="deathcases-box minheight">
                 <div className="numbers-box">
                   {globalLoading && <h1>Loading..</h1>}
                   {!globalLoading && (
