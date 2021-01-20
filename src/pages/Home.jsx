@@ -11,7 +11,7 @@ import Chart from "../components/Chart"
 
 const MenuWrapper = styled.div`
   height: 240px;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: flex-start;
   /* background-image: url("https://www.ebsco.com/e/files/assets-blogs/coka-project-covid19-blog-image-940.png"); */
@@ -25,7 +25,6 @@ const MenuWrapper = styled.div`
 const Menu = styled.div`
   height: fit-content;
   width: 100%;
-  min-width: 715px;
   padding: 5px 10%;
   display: flex;
   justify-content: space-between;
@@ -48,6 +47,24 @@ const Menu = styled.div`
   .menu-box {
     min-width: 53%;
     height: fit-content;
+
+    @media screen and (max-width: 725px) {
+      display: none;
+    }
+  }
+
+  .bars-box {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 725px) {
+      display: flex;
+    }
   }
 
   .profile-box {
@@ -57,6 +74,10 @@ const Menu = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+
+    @media screen and (max-width: 725px) {
+      display: none;
+    }
 
     img {
       max-width: 31px;
@@ -714,6 +735,14 @@ const HomePage = () => {
               alt=""
             />
           </div>
+          <div className="bars-box">
+            <img
+              src="http://assets.stickpng.com/images/588a6507d06f6719692a2d15.png"
+              height="30px"
+              width="30px"
+              alt="bars"
+            />
+          </div>
         </Menu>
       </MenuWrapper>
       <MainWrapper>
@@ -801,8 +830,6 @@ const HomePage = () => {
                   type="date"
                   name=""
                   ref={inputDate}
-                  defaultValue={`${dateYear}-${dateMonth}-0${dateDay}`}
-                  // defaultValue={`2020-11-01`}
                   onChange={handleChangeDate}
                   min="2020-02-01"
                   max={actualMonth}
