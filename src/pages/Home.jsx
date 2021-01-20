@@ -359,6 +359,7 @@ const GlobalDeathBox = styled.div`
         font-family: "Roboto", sans-serif;
         width: 100%;
         cursor: pointer;
+        background-color: white;
 
         &:focus {
           outline: none;
