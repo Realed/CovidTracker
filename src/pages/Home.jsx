@@ -99,10 +99,10 @@ const GlobalDeathBox = styled.div`
   margin-top: ${({ mgtop }) => mgtop};
 
   @media screen and (max-width: 1100px) {
-    width: 65%;
+    width: 70%;
   }
   @media screen and (max-width: 900px) {
-    width: 70%;
+    width: 75%;
   }
   @media screen and (max-width: 700px) {
     width: 80%;
@@ -125,9 +125,16 @@ const GlobalDeathBox = styled.div`
     height: 85%;
     min-height: 165px;
     padding: 5px 15px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+    row-gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
 
     @media screen and (max-width: 525px) {
-      padding: 15px;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
     }
 
     &.spain-box {
@@ -135,30 +142,15 @@ const GlobalDeathBox = styled.div`
       padding: 0 5px;
       grid-template-columns: 35% 65%;
       grid-template-rows: 100%;
-
       justify-content: center;
       align-items: center;
-      /* width: fit-content; */
     }
-
-    display: grid;
-    grid-template-columns: repeat(3, minmax(130px, 1fr));
-    row-gap: 10px;
-
-    @media screen and (max-width: 525px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, 1fr);
-    }
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 10px;
 
     .confirmedcases-box,
     .deathcases-box,
     .recoveredcases-box {
       width: 100%;
       height: 92%;
-      min-height: 95px;
       border-radius: 7px;
 
       .numbers-box {
@@ -357,24 +349,39 @@ const SpainDeathBox = styled(GlobalDeathBox)`
     width: 100%;
     padding: 0;
 
+    &.spain-box {
+      @media screen and (max-width: 940px) {
+        grid-template-columns: 25% 75%;
+      }
+    }
+
     .data-box {
       width: 100%;
       height: 100%;
       padding: 5px 10px;
       box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
 
+      @media screen and (max-width: 940px) {
+        grid-template-rows: 66% 33%;
+      }
       border-right: 1px solid #e4e4e4;
 
       .confirmed_recovered-box {
         display: flex;
         width: 100%;
-        height: 50%;
+        height: 100%;
         padding-bottom: 3px;
         justify-content: space-between;
         align-items: center;
+
+        .confirmedcases-box {
+          @media screen and (max-width: 940px) {
+            margin-bottom: 5px;
+          }
+        }
 
         .confirmedcases-box,
         .recoveredcases-box {
@@ -407,9 +414,18 @@ const SpainDeathBox = styled(GlobalDeathBox)`
             font-size: 0.55em;
           }
         }
+
+        @media screen and (max-width: 940px) {
+          flex-direction: column;
+
+          .confirmedcases-box,
+          .recoveredcases-box {
+            width: 100%;
+          }
+        }
       }
       .deaths-box {
-        height: 50%;
+        height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
@@ -418,14 +434,22 @@ const SpainDeathBox = styled(GlobalDeathBox)`
           width: 100%;
           height: 90%;
 
+          .numbers-box {
+            @media (max-width: 1175px) {
+              p {
+                font-size: 9px;
+                text-align: center;
+              }
+            }
+          }
+
           .footer {
             h1 {
               font-size: 0.85em;
             }
           }
-
           h1 {
-            font-size: 1.55em;
+            font-size: 1.2em;
           }
 
           p {
