@@ -165,15 +165,16 @@ const GlobalDeathBox = styled.div`
 
           .confirmed_recovered-box {
             flex-direction: row;
+            align-items: flex-end;
 
             .confirmedcases-box {
               margin: 0;
               margin-right: 5px;
-              height: 92%;
+              height: 96%;
             }
 
             .recoveredcases-box {
-              height: 92%;
+              height: 96%;
             }
           }
         }
