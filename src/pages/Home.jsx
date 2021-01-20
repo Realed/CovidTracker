@@ -81,11 +81,10 @@ const GlobalDeathWrapper = styled.div`
 const GlobalDeathBox = styled.div`
   width: 55%;
   max-width: 850px;
-  min-width: 275px;
+  min-width: 355px;
   background-color: #fff;
   border: 1px solid #eeee;
   min-height: 200px;
-  max-height: 600px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 6px;
@@ -107,12 +106,9 @@ const GlobalDeathBox = styled.div`
   @media screen and (max-width: 700px) {
     width: 80%;
   }
-  @media screen and (max-width: 625px) {
+  /* @media screen and (max-width: 625px) {
     width: 90%;
-  }
-  @media screen and (max-width: 525px) {
-    width: 65%;
-  }
+  } */
 
   h1,
   p {
@@ -126,7 +122,7 @@ const GlobalDeathBox = styled.div`
     min-height: 165px;
     padding: 5px 15px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(130px, 1fr));
+    grid-template-columns: repeat(3, minmax(110px, 1fr));
     row-gap: 10px;
     justify-content: space-between;
     align-items: center;
@@ -145,6 +141,43 @@ const GlobalDeathBox = styled.div`
       grid-template-rows: 100%;
       justify-content: center;
       align-items: center;
+
+      @media screen and (max-width: 940px) {
+        grid-template-columns: 25% 75%;
+      }
+
+      @media screen and (max-width: 770px) {
+        grid-template-columns: 100%;
+        grid-template-rows: 215px 80px;
+
+        .graph-box {
+          grid-row: 1/2;
+        }
+
+        .data-box {
+          grid-row: 2/3;
+
+          align-items: center;
+          grid-template-columns: 66% 33%;
+          grid-template-rows: 100%;
+          column-gap: 5px;
+          border-right: none;
+
+          .confirmed_recovered-box {
+            flex-direction: row;
+
+            .confirmedcases-box {
+              margin: 0;
+              margin-right: 5px;
+              height: 92%;
+            }
+
+            .recoveredcases-box {
+              height: 92%;
+            }
+          }
+        }
+      }
     }
 
     .confirmedcases-box,
@@ -180,6 +213,24 @@ const GlobalDeathBox = styled.div`
           font-weight: 400;
         }
         @media (max-width: 1175px) {
+          h1 {
+            font-size: 1.6em;
+          }
+          p {
+            font-size: 9.5px;
+          }
+        }
+
+        @media (max-width: 660px) {
+          h1 {
+            font-size: 1.4em;
+          }
+          p {
+            font-size: 8.5px;
+          }
+        }
+
+        @media (max-width: 525px) {
           h1 {
             font-size: 1.6em;
           }
@@ -325,29 +376,72 @@ const GlobalDeathBox = styled.div`
 const SpainDeathBox = styled(GlobalDeathBox)`
   height: 250px;
 
+  &.home-box {
+    margin-top: -90px;
+    height: fit-content;
+
+    @media screen and (max-width: 525px) {
+      margin-top: 140px;
+    }
+  }
+
   .title-box {
     height: 13%;
+    min-height: 30px;
     width: 100%;
     border-bottom: 1px solid #dbdbdb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100%;
     padding: 0 15px;
-    box-sizing: border-box;
+
+    @media screen and (max-width: 770px) {
+      padding: 0;
+      height: 60px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 50% 50%;
+      align-items: center;
+
+      .country-box {
+        padding-left: 15px;
+        justify-content: flex-start;
+        border-right: 1px solid #eeee;
+        font-size: 0.9em;
+      }
+
+      .updated-box {
+        justify-content: flex-end;
+        padding-right: 15px;
+        font-size: 0.9em;
+      }
+
+      .date-box {
+        border: none;
+        border-top: 1px solid #eeee;
+        grid-row: 2/3;
+        grid-column: 1/3;
+        justify-content: center;
+      }
+    }
 
     .country-box,
     .updated-box,
     .date-box {
+      display: flex;
+      align-items: center;
+      height: 100%;
       p {
         font-weight: 300;
         font-size: 0.95em;
       }
     }
 
-    .date-box {
-      p {
-        font-size: 0.8em;
-      }
+    .country-box {
+      justify-content: flex-start;
+    }
+
+    .updated-box {
+      justify-content: flex-end;
     }
 
     .date-box {
@@ -356,7 +450,12 @@ const SpainDeathBox = styled(GlobalDeathBox)`
       border-left: 1px solid #eeee;
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 0 12px;
+
+      p {
+        font-size: 0.8em;
+      }
     }
   }
 
@@ -364,12 +463,6 @@ const SpainDeathBox = styled(GlobalDeathBox)`
     height: 87%;
     width: 100%;
     padding: 0;
-
-    &.spain-box {
-      @media screen and (max-width: 940px) {
-        grid-template-columns: 25% 75%;
-      }
-    }
 
     .data-box {
       width: 100%;
@@ -412,6 +505,15 @@ const SpainDeathBox = styled(GlobalDeathBox)`
               p {
                 font-size: 9px;
                 text-align: center;
+              }
+            }
+            @media screen and (max-width: 730px) {
+              h1 {
+                font-size: 0.9em;
+              }
+
+              p {
+                font-size: 8px;
               }
             }
           }
@@ -710,7 +812,7 @@ const HomePage = () => {
             </div>
           </GlobalDeathBox>
         </GlobalDeathWrapper>
-        <SpainDeathBox mgtop="-90px">
+        <SpainDeathBox className="home-box">
           <div className="title-box">
             <div className="country-box">
               <p>Spain - Total Cases</p>
