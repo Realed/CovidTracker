@@ -595,7 +595,7 @@ const HomePage = () => {
   const [spainLoading, setSpainLoading] = useState(true)
   const [previousMonth, setPreviousMonth] = useState("")
   const [actualMonth, setActualMonth] = useState("")
-
+  console.log(actualMonth)
   //REFS
   const inputDate = useRef()
   let dateYear = new Date().getFullYear().toString()
@@ -804,7 +804,8 @@ const HomePage = () => {
                   // defaultValue={`2020-11-01`}
                   onChange={handleChangeDate}
                   min="2020-02-01"
-                  max={`${dateYear}-${dateMonth}-${dateDay}`}
+                  max={actualMonth}
+                  value={actualMonth}
                 />
               </div>
               <div className="date-box">
