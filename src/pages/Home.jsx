@@ -634,6 +634,8 @@ const HomePage = () => {
   let dateYear = new Date().getFullYear().toString()
   let dateMonth = (new Date().getMonth() + 1).toString()
   let dateDay = new Date().getDate().toString()
+  //Page Title
+  document.title = "Covid Tracker | Home"
 
   //NUMBER FORMATER
   const formatNumber = {
