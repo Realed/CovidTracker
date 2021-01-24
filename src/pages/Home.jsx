@@ -30,8 +30,8 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fafafa;
   color: black;
+  background-color: #eee;
 
   @media screen and (max-width: 1400px) {
     padding: 5px 7%;

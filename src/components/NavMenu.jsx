@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom"
 
 const MenuWrapper = styled.div`
   width: 100%;
+  background-color: #eee;
   /* height: 70px; */
 `
 
@@ -42,8 +43,8 @@ const NavMenu = () => {
           <StyledLink exact to="/">
             Home
           </StyledLink>
-          <StyledLink exact to="/">
-            Covid Info
+          <StyledLink exact to="/countries">
+            Countries
           </StyledLink>
           <StyledLink exact to="/">
             Travel Alert
